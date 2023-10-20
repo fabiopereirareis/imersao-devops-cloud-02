@@ -13,8 +13,8 @@ jobs:
     - name: Docker Login
       uses: docker/login-action@v3.0.0
       with:
-        username: ${{}}
-        password: ${{}}
+        username: ${{secrets.DOCKER_HUB_USER}}
+        password: ${{secrets.DOCKER_HUB_SECRET}}
     - name: Construir a imagem de container
       run: echo "executar o docker build"
     - name: Enviar a imagem para o docker registry
