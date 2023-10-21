@@ -50,3 +50,23 @@ variable "private_subnets" {
 variable "public_subnets" {
   default = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 }
+
+module "eks" {
+  source  = "terraform-aws-modules/eks/aws"
+  version = "19.17.2"
+
+  cluster_name = "imersao-eks"
+  cluster_version = "1.28"
+
+  subnet_ids = module.vpc.private_subnets
+  vpc_id = module.vpc.vpc_id
+  cluster_endpoint_public_access = {
+    default = {
+      min_size        = 1
+      max_sizer       = 3
+      desired_size    = 3
+
+      instance_types  = ["t3.micro"]
+    }
+  }
+}
