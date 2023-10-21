@@ -55,7 +55,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "19.17.2"
 
-  cluster_name = "imersao-eks"
+  cluster_name = "eks-imersao"
   cluster_version = "1.28"
 
   subnet_ids = module.vpc.private_subnets
